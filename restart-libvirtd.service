@@ -1,0 +1,8 @@
+[Unit]
+Description=Restart libvirt if cannot allocate memory
+
+[Service]
+User=root
+Group=root
+Type=oneshot
+ExecStart=/bin/bash /usr/sbin/restart-libvirtd.sh

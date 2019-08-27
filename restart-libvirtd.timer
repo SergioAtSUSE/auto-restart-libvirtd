@@ -1,0 +1,9 @@
+[Unit]
+Description=Restart libvirt if cannot allocate memory and then, wait an hour
+Requires=restart-libvirtd.service
+
+[Timer]
+OnUnitInactiveSec=3600s
+
+[Install]
+WantedBy=timers.target
