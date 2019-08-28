@@ -23,9 +23,9 @@ default:
 	@echo "use 'make install' to install"
 
 install:
-	install -m 0544 src/restart-libvirtd.sh "$(path_sbin)"
-	install -m 0444 src/restart-libvirtd.service "$(path_systemd)"
-	install -m 0444 src/restart-libvirtd.timer "$(path_systemd)"
+	install -D -m 0544 src/restart-libvirtd.sh "$(path_sbin)"
+	install -D -m 0444 src/restart-libvirtd.service "$(path_systemd)"
+	install -D -m 0444 src/restart-libvirtd.timer "$(path_systemd)"
 
 printvars:
 	@$(foreach V,$(sort $(.VARIABLES)), $(if $(filter-out environment% default automatic, $(origin $V)),$(warning $V=$($V) ($(value $V)))))
