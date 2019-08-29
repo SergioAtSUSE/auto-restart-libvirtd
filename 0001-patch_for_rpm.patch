@@ -1,0 +1,38 @@
+From 956dff41636e16b18ba0e5edd70dd70610941c73 Mon Sep 17 00:00:00 2001
+From: Sergio Lindo <sergiolindo.empresa@gmail.com>
+Date: Thu, 29 Aug 2019 16:52:13 +0200
+Subject: [PATCH] patch_for_rpm
+
+---
+ Makefile                     | 4 ++--
+ src/restart-libvirtd.service | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 4cb94d3..0d3d347 100644
+--- a/Makefile
++++ b/Makefile
+@@ -16,8 +16,8 @@
+ #
+ .DEFAULT_GOAL:= default
+ .PHONY: default install printvars
+-path_sbin = $(DESTDIR)/usr/local/sbin/
+-path_systemd = $(DESTDIR)/usr/local/lib/systemd/system/
++path_sbin = $(DESTDIR)/usr/sbin/
++path_systemd = $(DESTDIR)/usr/lib/systemd/system/
+ 
+ default:
+ 	@echo "use 'make install' to install"
+diff --git a/src/restart-libvirtd.service b/src/restart-libvirtd.service
+index 312ec92..ba3919e 100644
+--- a/src/restart-libvirtd.service
++++ b/src/restart-libvirtd.service
+@@ -5,4 +5,4 @@ Description=Restart libvirt if cannot allocate memory
+ User=root
+ Group=root
+ Type=oneshot
+-ExecStart=/bin/bash /usr/local/sbin/restart-libvirtd.sh
++ExecStart=/bin/bash /usr/sbin/restart-libvirtd.sh
+-- 
+2.16.4
+
