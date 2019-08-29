@@ -27,6 +27,7 @@ install:
 	install -m 0544 src/restart-libvirtd.sh "$(path_sbin)"
 	mkdir -p "$(path_systemd)"
 	install -m 0444 src/restart-libvirtd.service "$(path_systemd)"
+	ln -s ../sbin/service "$(path_sbin)/rcrestart-libvirtd"
 	install -m 0444 src/restart-libvirtd.timer "$(path_systemd)"
 
 printvars:
