@@ -16,8 +16,8 @@
 #
 .DEFAULT_GOAL:= default
 .PHONY: default install printvars
-path_sbin = $(DESTDIR)/usr/local/sbin/
-path_systemd = $(DESTDIR)/usr/local/lib/systemd/system/
+path_sbin = $(DESTDIR)/usr/sbin/
+path_systemd = $(DESTDIR)/usr/lib/systemd/system/
 
 default:
 	@echo "use 'make install' to install"
