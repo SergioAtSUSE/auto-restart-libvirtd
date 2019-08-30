@@ -1,0 +1,25 @@
+<services>
+  <!-- git clone and extract the sources from github -->
+  <service name="obs_scm">
+    <param name="url">https://github.com/SergioAtSUSE/auto-restart-libvirtd.git</param>
+    <param name="scm">git</param>
+    <!-- This is the github branch to checkout -->
+    <param name="revision">development</param>
+    <!-- This is the prefix version for the packages filename -->
+    <param name="versionprefix">0.0.0</param>
+    <!-- Append the date and commit hash to the version -->
+    <param name="versionformat">%cd.%h</param>
+    <!-- Copy files needed before build into working directory -->
+    <param name="extract">auto-restart-libvirtd.spec</param>
+    <param name="extract">0001-patch_for_rpm.patch</param>
+  </service>
+  <!-- Archive extracted sources again -->
+  <service mode="buildtime" name="tar" />
+  <!-- Compress archive again as xz -->
+  <service mode="buildtime" name="recompress">
+    <param name="file">*.tar</param>
+    <param name="compression">xz</param>
+  </service>
+  <!-- Overwrite version field in specfile when building -->
+  <service mode="buildtime" name="set_version" />
+</services>
