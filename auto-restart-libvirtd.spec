@@ -14,21 +14,33 @@
 
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
+%if 0%{?suse_version} >= 1210
+%bcond_without systemd
+%else
+%bcond_with systemd
+%endif
 Name:      auto-restart-libvirtd
-Version:   0.3.1
+# The version will be set by OBS _service
+Version:   0.0.0
 Release:   0%{?dist}
 License:   GPL-3.0+
 Summary:   Auto restart libvirt when KVM host cannot allocate memory
 Url:       https://github.com/SergioAtSUSE/auto-restart-libvirtd
 Group:     System/Management
-Source:    auto-restart-libvirtd-%{version}.tar.xz
+Source:    %{name}-%{version}.tar.xz
 BuildArch: noarch
+Patch1:    0001-patch_for_rpm.patch
+%if %{with systemd}
+BuildRequires: systemd-rpm-macros
+%{?systemd_requires}
+%endif
 
 %description
 KVM hosts are affected by a memory leak problem that causes an error when allocating memory for the guests. A workaround is restarting libvirtd.
 
 %prep
 %setup -q
+%autopatch -p1
 
 %build
 
