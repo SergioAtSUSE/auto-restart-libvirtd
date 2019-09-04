@@ -8,10 +8,26 @@ QSF KVM hosts suffer from memory leaks, a workaround is restarting libvirtd
 #### From source
 
 ```bash
-user@host:~/Downloads$ wget https://github.com/SergioAtSUSE/auto-restart-libvirtd/archive/v0.2.1.tar.gz
-user@host:~/Downloads$ tar -xzvf v0.2.1.tar.gz
-user@host:~/Downloads$ cd auto-restart-libvirtd-0.2.1/
-user@host:~/Downloads/auto-restart-libvirtd-0.2.1$ make install
+user@host:~/Downloads$ wget https://github.com/openSUSE/auto-restart-libvirtd/archive/v1.0.0.tar.gz
+user@host:~/Downloads$ tar -xzvf v1.0.0.tar.gz
+user@host:~/Downloads$ cd auto-restart-libvirtd-1.0.0/
+user@host:~/Downloads/auto-restart-libvirtd-1.0.0$ make install
+```
+
+#### From Open Build Service
+
+Packaged in OBS project https://build.opensuse.org/package/show/devel:openSUSE:QA:QSF/auto-restart-libvirtd
+```bash
+# Find your distribution here https://download.opensuse.org/repositories/devel:/openSUSE:/QA:/QSF/
+user@host:~$ DISTRI=openSUSE_Leap_15.1 # eg. openSUSE Leap 15.1 for x86_64
+user@host:~$ sudo zypper addrepo https://download.opensuse.org/repositories/devel:/openSUSE:/QA:/QSF/$DISTRI QSF
+user@host:~$ sudo zypper install auto-restart-libvirtd
+```
+
+#### Activation
+
+```bash
+user@host:~$ sudo systemctl enable --now restart-libvirtd.timer
 ```
 
 
